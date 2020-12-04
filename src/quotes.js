@@ -1,16 +1,11 @@
 const request = require('superagent');
 
 const fetchQuote = async () => {
-    const response = await request.get('http://futuramaapi.herokuapp.com/api/quotes')
+    const { body } = await request.get('futuramaapi.herokuapp.com/api/quotes')
 
-    const results = response.body[0];
-    const singleQuote = {
-        name: results.character,
-        text: results.quote,
-        image: results.image
-    };
-    return singleQuote;
-}
+    const { results: [{ character: name, quote: text, image }, ...rest] } = body;
+    return { name, text, image }
+};
 
 module.exports = {
     fetchQuote
