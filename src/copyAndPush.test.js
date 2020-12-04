@@ -1,21 +1,18 @@
 const { copyAndPush } = require('./copyAndPush')
 
 describe('copyAndPush function', () => {
+    const numbers = [1, 2, 3];
+    const item = 42;
     it('Dan Bs the function', () => {
-        const numbers = [1, 2, 3];
-        const result = copyAndPush(numbers, 4);
+
+        const result = copyAndPush(numbers, item);
 
         expect(result)
-            .toEqual(4)
-    })
-})
-
-describe('unchanged original', () => {
+            .toEqual([1, 2, 3, 42])
+    });
     it('check to see if original is unchanged', () => {
-        const originalArray = [1, 2, 3];
-        const originalResult = copyAndPush(originalArray);
 
-        expect(originalResult)
-            .toEqual(4)
-    })
-})
+        expect(numbers)
+            .toEqual([1, 2, 3])
+    });
+});
